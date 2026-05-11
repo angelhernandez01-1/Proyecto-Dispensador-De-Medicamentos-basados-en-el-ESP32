@@ -1,0 +1,43 @@
+
+# Dispensador Inteligente ESP32
+
+Sistema automatizado de dispensación de medicamento usando:
+
+- ESP32
+- Blynk IoT
+- RTC DS3231
+- Sensores IR (detección de pastilla)
+- Servomotores
+
+## Funcionalidad
+
+- Programación de horarios desde Blynk
+- Doble dispensador independiente
+- Detección de toma de medicamento
+- Fail-safe de bloqueo
+- Recuperación automática de conexión
+
+## Hardware
+
+- ESP32
+- RTC DS3231
+- 2 Servos
+- 2 Sensores IR
+
+## Pines
+
+| Función | GPIO |
+|--------|------|
+| Servo 1 | 18 |
+| Servo 2 | 19 |
+| IR 1    | 15 |
+| IR 2    | 4  |
+
+## Seguridad
+
+Las credenciales no se incluyen en el repositorio.  
+
+
+## Autor
+
+Angel Hernandez

@@ -1,0 +1,70 @@
+
+## Flujos de Datos (Blynk Virtual Pins)
+
+El sistema utiliza la plataforma Blynk para la configuración de horarios, control manual y monitoreo en tiempo real.
+
+### Servo 1 (Dispensador 1)
+
+| Función            | Pin |
+|--------------------|-----|
+| Alarma 1 Hora      | V1  |
+| Alarma 1 Minuto    | V4  |
+| Alarma 2 Hora      | V2  |
+| Alarma 2 Minuto    | V6  |
+| Alarma 3 Hora      | V3  |
+| Alarma 3 Minuto    | V7  |
+
+---
+
+### Servo 2 (Dispensador 2)
+
+| Función            | Pin |
+|--------------------|-----|
+| Alarma 1 Hora      | V9  |
+| Alarma 1 Minuto    | V12 |
+| Alarma 2 Hora      | V10 |
+| Alarma 2 Minuto    | V13 |
+| Alarma 3 Hora      | V11 |
+| Alarma 3 Minuto    | V14 |
+
+---
+
+### Control Manual
+
+| Función            | Pin |
+|--------------------|-----|
+| Activar Servo 1    | V0  |
+| Activar Servo 2    | V15 |
+| Reset Alarmas      | V8  |
+
+---
+
+### Monitoreo del Sistema
+
+| Función            | Pin |
+|--------------------|-----|
+| Hora actual        | V5  |
+| Estado / Mensajes  | V16 |
+
+---
+
+## Descripción del flujo
+
+- El usuario configura horarios desde la app Blynk.
+- El ESP32 recibe horas y minutos por separado.
+- Se convierten a formato HHMM para comparación.
+- Cuando el tiempo coincide:
+  - Se activa la alarma (vibración vía ESP-NOW)
+  - Se acciona el servo correspondiente
+- Sensores IR verifican si el medicamento fue retirado:
+  - Si detecta pastilla → se desactiva alarma
+- El sistema envía mensajes de estado en tiempo real a Blynk.
+
+---
+
+## Notas técnicas
+
+- Los valores de hora están en rango: `0–23`
+- Los minutos están en rango: `0–59`
+- Los controles manuales operan por pulsos (valor = 1)
+- Se implementa lógica anti-repetición usando fecha (YYYYMMDD)
